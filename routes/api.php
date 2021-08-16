@@ -14,7 +14,7 @@ use App\Http\Controllers\Auth\RenewTokenController;
 use App\Http\Controllers\Auth\UpdateController;
 use App\Http\Controllers\Auth\UploadImageController;
 use App\Http\Controllers\User\UserController;
-
+use App\Http\Controllers\Blog\BlogController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -92,6 +92,29 @@ Route::prefix('user')->group(function () {
         ->middleware('auth:sanctum', 'verified','isRole:_ADMIN')
         ->name('user.set.admin');;
 });
+
+/*
+|--------------------------------------------------------------------------
+| API BLOG ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('entry')->group(function () {
+    Route::post('/create-entry', [BlogController::class, 'createEntry'])
+        ->middleware('auth:sanctum', 'verified');
+
+    Route::delete('/delete/{id}', [BlogController::class, 'deleteEntry'])
+        ->middleware('auth:sanctum', 'verified');
+
+    Route::put('/update-entry/{id}', [BlogController::class, 'updateEntry'])
+        ->middleware('auth:sanctum', 'verified');
+
+    Route::get('/get-entries', [BlogController::class, 'getEntries']);
+    Route::get('/get-entry/{id}', [BlogController::class, 'getEntry']);
+});
+
+
+
 
 Route::get('/verified-middleware-example', function () {
     return response()->json([
