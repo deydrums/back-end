@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Entry;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class EntryFactory extends Factory
 {
@@ -24,8 +25,8 @@ class EntryFactory extends Factory
     {
         return [
             'title' => $this->faker->name(),
-            'content' => Str::random(10),
-            'user_id' => 1,
+            'content' => $this->faker->paragraphs(30, true),
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }
