@@ -48,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relacion de uno a muchos (un usuario para muchas entradas)
+    public function entries(){
+        return $this->hasMany(Entry::class);
+    }
 }
