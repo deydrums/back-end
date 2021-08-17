@@ -118,6 +118,9 @@ Route::prefix('entry')->group(function () {
 Route::prefix('category')->group(function () {
     Route::post('/create-category', [CategoryController::class, 'createCategory'])
         ->middleware('auth:sanctum', 'verified');
+
+    Route::put('/update-category/{id}', [CategoryController::class, 'updateCategory'])
+        ->middleware('auth:sanctum', 'verified');
 });
 
 
