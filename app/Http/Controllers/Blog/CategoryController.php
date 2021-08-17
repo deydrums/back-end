@@ -141,4 +141,39 @@ class CategoryController extends Controller
         ], 401);
 
     }
+
+    public function getCategory(CategoryRequest $request)
+    {
+        try {
+            $category = $request->getCategory($request);
+
+            if($category){
+                return response()->json([
+                    'ok' => true,
+                    'message' => 'Categoria',
+                    'entry' => $category
+                ], 200);
+            }else{
+                return response()->json([
+                    'ok' => false,
+                    'message' => 'La categoria no existe'
+                ], 404);
+            }
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'ok' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
+
+        return response()->json([
+            'ok' => false,
+            'message' => 'Ha ocurrido un error, intenta de nuevo',
+        ], 401);
+
+    }
+
 }

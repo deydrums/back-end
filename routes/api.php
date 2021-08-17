@@ -126,6 +126,9 @@ Route::prefix('category')->group(function () {
 
     Route::delete('/delete/{id}', [CategoryController::class, 'deleteCategory'])
         ->middleware('auth:sanctum', 'verified','isRole:_ADMIN');
+
+    Route::get('/get-category/{id}', [CategoryController::class, 'getCategory']);
+
 });
 
 
