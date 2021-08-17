@@ -56,7 +56,7 @@ class BlogController extends Controller
         try {
 
             return response()->json([
-                'entries' => Entry::with(['user'])->orderBy('created_at' , 'desc')->paginate(6),
+                'entries' => Entry::with(['user','category'])->orderBy('created_at' , 'desc')->paginate(6),
             ], 200);
 
         } catch (\Exception $exception) {
@@ -84,7 +84,7 @@ class BlogController extends Controller
                 return response()->json([
                     'ok' => true,
                     'message' => 'Entrada',
-                    'entry' => $entry->load('user')
+                    'entry' => $entry->load(['user','category'])
                 ], 200);
             }else{
                 return response()->json([
