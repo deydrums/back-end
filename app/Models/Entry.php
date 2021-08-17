@@ -18,6 +18,7 @@ class Entry extends Model
         'title',
         'content',
         'user_id',
+        'category_id',
     ];
 
     /**
@@ -27,6 +28,9 @@ class Entry extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

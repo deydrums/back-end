@@ -2,20 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Entry;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\User;
-use App\Models\Category;
 
-class EntryFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Entry::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -25,10 +23,8 @@ class EntryFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name(),
-            'content' => $this->faker->paragraphs(30, true),
-            'user_id' => User::inRandomOrder()->first()->id,
-            'category_id' => Category::inRandomOrder()->first()->id,
+            'name' => $this->faker->name(),
         ];
     }
+
 }
