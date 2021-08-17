@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\UpdateController;
 use App\Http\Controllers\Auth\UploadImageController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
+use App\Http\Controllers\Blog\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -113,6 +114,11 @@ Route::prefix('entry')->group(function () {
     Route::get('/get-entry/{id}', [BlogController::class, 'getEntry']);
 });
 
+
+Route::prefix('category')->group(function () {
+    Route::post('/create-category', [CategoryController::class, 'createCategory'])
+        ->middleware('auth:sanctum', 'verified');
+});
 
 
 
