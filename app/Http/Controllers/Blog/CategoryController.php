@@ -79,4 +79,29 @@ class CategoryController extends Controller
 
     }
 
+
+    
+    public function getCategories(Request $request)
+    {
+        try {
+
+            return response()->json([
+                'categories' => Category::all(),
+            ], 200);
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'ok' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
+
+        return response()->json([
+            'ok' => false,
+            'message' => 'Ha ocurrido un error, intenta de nuevo',
+        ], 401);
+
+    }
 }
