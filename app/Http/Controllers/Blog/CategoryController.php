@@ -104,4 +104,41 @@ class CategoryController extends Controller
         ], 401);
 
     }
+
+
+
+
+    public function deleteCategory(CategoryRequest $request)
+    {
+        try {
+            $category = $request->getCategory($request);
+
+            if($category){
+                $category->delete();
+                return response()->json([
+                    'ok' => true,
+                    'message' => 'Categoria borrada satisfactoriamente'
+                ], 200);
+            }else{
+                return response()->json([
+                    'ok' => false,
+                    'message' => 'No puedes eliminar la categoria'
+                ], 401);
+            }
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'ok' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
+
+        return response()->json([
+            'ok' => false,
+            'message' => 'Ha ocurrido un error, intenta de nuevo',
+        ], 401);
+
+    }
 }
