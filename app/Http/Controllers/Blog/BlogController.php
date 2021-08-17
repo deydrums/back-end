@@ -25,7 +25,8 @@ class BlogController extends Controller
             $entry = Entry::create([
                 'title' => $request->get('title'),
                 'content' => $request->get('content'),
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'category_id' => $request->get('category_id'),
             ]);
 
 
@@ -153,6 +154,7 @@ class BlogController extends Controller
                 $entry->update([
                     'title' => $request->get('title'),
                     'content' => $request->get('content'),
+                    'category_id' => $request->get('category_id'),
                 ]);
                 return response()->json([
                     'ok' => true,
@@ -162,7 +164,7 @@ class BlogController extends Controller
             }else{
                 return response()->json([
                     'ok' => false,
-                    'message' => 'No puedes eliminar la entrada'
+                    'message' => 'No puedes actualizar la entrada'
                 ], 401);
             }
 
