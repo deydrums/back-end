@@ -209,7 +209,8 @@ class BlogController extends Controller
                 return response()->json([
                     'ok' => true,
                     'message' => __('api-auth.image_upload'),
-                    'filename' => $image_name
+                    'filename' => $image_name,
+                    'entry' => $entry->load(['user','category'])
                 ], 200);
             }else{
                 return response()->json([
