@@ -14,6 +14,8 @@ use App\Models\Entry;
 use App\Http\Requests\user\auth\UploadImageRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
+
 
 class BlogController extends Controller
 {
@@ -29,6 +31,7 @@ class BlogController extends Controller
                 'content' => $request->get('content'),
                 'user_id' => $user->id,
                 'category_id' => $request->get('category_id'),
+                'image' => null,
             ]);
 
 
@@ -223,6 +226,29 @@ class BlogController extends Controller
         }
     }
 
+    public function getImage($filename, $ext)
+    {
+        try {
+
+            $file = Storage::disk('entries')->get($filename.'.'.$ext);
+
+            return new Response($file,200);
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'ok' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
+
+        return response()->json([
+            'ok' => false,
+            'message' => __('Error'),
+        ], 401);
+
+    }
 
 }
 

@@ -116,6 +116,9 @@ Route::prefix('entry')->group(function () {
 
     Route::post('/upload/{id}', [BlogController::class, 'uploadImage'])
         ->middleware('auth:sanctum', 'verified');
+
+    Route::get('/get-image/{filename}/{ext}', [BlogController::class, 'getImage'])
+        ->name('entry.get.img');;
 });
 
 
