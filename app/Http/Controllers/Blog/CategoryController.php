@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Blog\NewCategoryRequest;
 use App\Http\Requests\Blog\CategoryRequest;
 use App\Models\Category;
+use App\Models\Entry;
 
 class CategoryController extends Controller
 {
@@ -146,12 +147,12 @@ class CategoryController extends Controller
     {
         try {
             $category = $request->getCategory($request);
-
+            $entries = Entry::with(['user','category'])->where('category_id', $category->id)->orderBy('created_at' , 'desc')->paginate(6);
             if($category){
                 return response()->json([
                     'ok' => true,
                     'message' => 'Categoria',
-                    'entry' => $category->load('entries')
+                    'entries' => $entries
                 ], 200);
             }else{
                 return response()->json([
