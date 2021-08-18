@@ -111,7 +111,11 @@ Route::prefix('entry')->group(function () {
         ->middleware('auth:sanctum', 'verified');
 
     Route::get('/get-entries', [BlogController::class, 'getEntries']);
+
     Route::get('/get-entry/{id}', [BlogController::class, 'getEntry']);
+
+    Route::post('/upload/{id}', [BlogController::class, 'uploadImage'])
+        ->middleware('auth:sanctum', 'verified');
 });
 
 

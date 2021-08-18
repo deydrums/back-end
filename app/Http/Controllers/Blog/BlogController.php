@@ -11,7 +11,9 @@ use App\Http\Requests\Blog\NewEntryRequest;
 use App\Http\Requests\Blog\MyEntryRequest;
 use App\Http\Requests\Blog\EntryRequest;
 use App\Models\Entry;
-
+use App\Http\Requests\user\auth\UploadImageRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -182,6 +184,43 @@ class BlogController extends Controller
             'message' => 'Ha ocurrido un error, intenta de nuevo',
         ], 401);
 
+    }
+
+
+    public function uploadImage(UploadImageRequest $request, MyEntryRequest $req){
+        try {
+
+            $entry = $req->getEntry($request);
+
+            if($entry){
+                $aimage = $entry->image;
+                if ($aimage){
+                    Storage::disk('entries')->delete($aimage);
+                }
+                $image = $request->file('file');
+                $image_name = time().$image->getClientOriginalName();
+                Storage::disk('entries')->put($image_name, File::get($image));
+                $entry->update([
+                    'image' => $image_name,
+                ]);
+                return response()->json([
+                    'ok' => true,
+                    'message' => __('api-auth.image_upload'),
+                    'filename' => $image_name
+                ], 200);
+            }else{
+                return response()->json([
+                    'ok' => false,
+                    'message' => 'No puedes actualizar la entrada'
+                ], 401);
+            }
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
     }
 
 

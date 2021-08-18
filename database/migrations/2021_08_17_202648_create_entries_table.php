@@ -18,6 +18,7 @@ class CreateEntriesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');;
             $table->foreignId('category_id')->constrained()->onDelete('cascade');;
             $table->string('title');
+            $table->string('image')->nullable();
             $table->longText('content');
             $table->timestamps();
         });

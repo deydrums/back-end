@@ -19,6 +19,7 @@ class Entry extends Model
         'content',
         'user_id',
         'category_id',
+        'image',
     ];
 
     /**
