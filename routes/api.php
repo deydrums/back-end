@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\UploadImageController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Blog\CategoryController;
+use App\Http\Controllers\Ui\UiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -135,10 +136,11 @@ Route::prefix('category')->group(function () {
         ->middleware('auth:sanctum', 'verified','isRole:_ADMIN');
 
     Route::get('/get-category/{id}', [CategoryController::class, 'getCategory']);
-
 });
 
-
+Route::prefix('ui')->group(function () {
+    Route::post('/send-contactEmail', [UiController::class, 'contactEmail']);
+});
 
 Route::get('/verified-middleware-example', function () {
     return response()->json([
