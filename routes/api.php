@@ -160,6 +160,12 @@ Route::prefix('portafolio')->group(function () {
         ->middleware('auth:sanctum', 'verified');
 
     Route::get('/get-projects', [PortafolioController::class, 'getProjects']);
+
+    Route::put('/update-project/{id}', [PortafolioController::class, 'updateProject'])
+        ->middleware('auth:sanctum', 'verified');
+
+    Route::delete('/delete/{id}', [PortafolioController::class, 'deleteProject'])
+        ->middleware('auth:sanctum', 'verified','isRole:_ADMIN');
 });
 
 
