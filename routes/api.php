@@ -17,6 +17,8 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\Blog\CategoryController;
 use App\Http\Controllers\Ui\UiController;
+use App\Http\Controllers\Portafolio\PortafolioController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -138,9 +140,26 @@ Route::prefix('category')->group(function () {
     Route::get('/get-category/{id}', [CategoryController::class, 'getCategory']);
 });
 
+/*
+|--------------------------------------------------------------------------
+| API UI ROUTES
+|--------------------------------------------------------------------------
+*/
+
 Route::prefix('ui')->group(function () {
     Route::post('/send-contactEmail', [UiController::class, 'contactEmail']);
 });
+
+/*
+|--------------------------------------------------------------------------
+| API PORTAFOLIO ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::prefix('portafolio')->group(function () {
+    Route::post('/create-project', [PortafolioController::class, 'createProject'])
+        ->middleware('auth:sanctum', 'verified');
+});
+
 
 Route::get('/verified-middleware-example', function () {
     return response()->json([
