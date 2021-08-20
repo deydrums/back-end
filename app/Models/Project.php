@@ -19,6 +19,10 @@ class Project extends Model
         'desc',
         'date',
         'image',
+        'technologies',
+        'responsive',
+        'role',
+        'link'
     ];
 
 }

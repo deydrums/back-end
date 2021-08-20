@@ -18,6 +18,10 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->longText('desc');
             $table->string('date');
+            $table->string('technologies');
+            $table->string('responsive');
+            $table->string('role');
+            $table->string('link');
             $table->string('image')->nullable();
             $table->timestamps();
         });

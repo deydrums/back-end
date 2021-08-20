@@ -27,6 +27,10 @@ class NewProjectRequest extends FormRequest
             'name' => 'required',
             'desc' => 'required',
             'date' => 'required|date',
+            'technologies' => 'required',
+            'responsive' => 'required',
+            'role' => 'required',
+            'link' => 'required'
         ];
     }
 }

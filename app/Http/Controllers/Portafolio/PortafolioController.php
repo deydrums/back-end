@@ -18,6 +18,10 @@ class PortafolioController extends Controller
                 'name' => $request->get('name'),
                 'desc' => $request->get('desc'),
                 'date' => $request->get('date'),
+                'responsive' => $request->get('responsive'),
+                'role' => $request->get('role'),
+                'link' => $request->get('link'),
+                'technologies' => $request->get('technologies'),
                 'image' => null,
             ]);
 
@@ -79,6 +83,10 @@ class PortafolioController extends Controller
                     'name' => $request->get('name'),
                     'desc' => $request->get('desc'),
                     'date' => $request->get('date'),
+                    'responsive' => $request->get('responsive'),
+                    'role' => $request->get('role'),
+                    'link' => $request->get('link'),
+                    'technologies' => $request->get('technologies'),
                 ]);
                 return response()->json([
                     'ok' => true,

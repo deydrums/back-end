@@ -27,6 +27,10 @@ class ProjectFactory extends Factory
             'desc' => $this->faker->paragraphs(1, true),
             'image' => null,
             'date' => now(),
+            'technologies' => 'php, javascript, mysql',
+            'responsive' => 'Si',
+            'role' => 'FullStack',
+            'link' => 'www.google.com'
         ];
     }
 }
