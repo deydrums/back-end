@@ -9,6 +9,7 @@ use App\Http\Requests\Portafolio\ProjectRequest;
 use App\Http\Requests\user\auth\UploadImageRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Response;
 
 use App\Models\Project;
 
@@ -192,6 +193,28 @@ class PortafolioController extends Controller
         }
     }
 
+    public function getImage($filename, $ext)
+    {
+        try {
 
+            $file = Storage::disk('projects')->get($filename.'.'.$ext);
+
+            return new Response($file,200);
+
+        } catch (\Exception $exception) {
+
+            return response()->json([
+                'ok' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+
+        }
+
+        return response()->json([
+            'ok' => false,
+            'message' => __('Error'),
+        ], 401);
+
+    }
 
 }

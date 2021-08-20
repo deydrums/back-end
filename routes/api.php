@@ -169,6 +169,9 @@ Route::prefix('portafolio')->group(function () {
 
     Route::post('/upload/{id}', [PortafolioController::class, 'uploadImage'])
         ->middleware('auth:sanctum', 'verified');
+
+    Route::get('/get-image/{filename}/{ext}', [PortafolioController::class, 'getImage'])
+        ->name('portafolio.get.img');;
 });
 
 
