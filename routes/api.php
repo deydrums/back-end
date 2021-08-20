@@ -166,6 +166,9 @@ Route::prefix('portafolio')->group(function () {
 
     Route::delete('/delete/{id}', [PortafolioController::class, 'deleteProject'])
         ->middleware('auth:sanctum', 'verified','isRole:_ADMIN');
+
+    Route::post('/upload/{id}', [PortafolioController::class, 'uploadImage'])
+        ->middleware('auth:sanctum', 'verified');
 });
 
 
