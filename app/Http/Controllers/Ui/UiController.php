@@ -25,7 +25,7 @@ class UiController extends Controller
 
             return response()->json([
                 'ok' => true,
-                'message' => $user['email']
+                'message' => 'Mensaje enviado con exito'
             ], 200);
 
         } catch (\Exception $exception) {
