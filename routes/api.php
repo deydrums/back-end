@@ -158,6 +158,8 @@ Route::prefix('ui')->group(function () {
 Route::prefix('portafolio')->group(function () {
     Route::post('/create-project', [PortafolioController::class, 'createProject'])
         ->middleware('auth:sanctum', 'verified');
+
+    Route::get('/get-projects', [PortafolioController::class, 'getProjects']);
 });
 
 
