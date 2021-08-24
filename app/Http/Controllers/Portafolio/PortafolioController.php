@@ -176,7 +176,7 @@ class PortafolioController extends Controller
                     'ok' => true,
                     'message' => __('api-auth.image_upload'),
                     'filename' => $image_name,
-                    'entry' => $project
+                    'project' => $project
                 ], 200);
             }else{
                 return response()->json([
