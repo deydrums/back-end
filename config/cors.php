@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://www.deydrums.com', 'http://www.deydrums.com','http://localhost:3000', 'http://192.168.1.151:3000'],
 
     'allowed_origins_patterns' => [],
 
